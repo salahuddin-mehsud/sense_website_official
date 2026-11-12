@@ -1,0 +1,13 @@
+{
+  "name": "sense-iiui-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "preview": "npm run preview --prefix client",
+    "seed": "npm run seed --prefix server"
+  }
+}
