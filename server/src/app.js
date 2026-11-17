@@ -12,6 +12,7 @@ import galleryRoutes from './routes/galleryRoutes.js';
 import peopleRoutes from './routes/peopleRoutes.js';
 import submissionRoutes from './routes/submissionRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -73,7 +74,8 @@ app.get('/', (req, res) => {
       people: '/api/v1/people',
       gallery: '/api/v1/gallery',
       submissions: '/api/v1/submissions',
-      content: '/api/v1/content'
+      content: '/api/v1/content',
+      upload: '/api/v1/upload'
     },
     time: new Date().toISOString()
   });
@@ -92,6 +94,7 @@ app.use('/api/v1/gallery', galleryRoutes);
 app.use('/api/v1/people', peopleRoutes);
 app.use('/api/v1/submissions', submissionRoutes);
 app.use('/api/v1/content', contentRoutes);
+app.use('/api/v1/upload', uploadRoutes);
 
 // 404 Route Catch-all
 app.use((req, res) => {

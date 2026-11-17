@@ -95,6 +95,16 @@ export const api = {
     return handleResponse(res);
   },
 
+  // Image Upload (Device to Cloudinary / Data URI)
+  async uploadImage(imageData, folder = 'sense_iiui') {
+    const res = await fetch(`${API_BASE}/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: imageData, folder })
+    });
+    return handleResponse(res);
+  },
+
   // Submissions (Admin)
   async getSubmissions() {
     const res = await fetch(`${API_BASE}/submissions`, {

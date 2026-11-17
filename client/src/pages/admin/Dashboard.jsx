@@ -10,6 +10,7 @@ import {
   Download, ArrowLeft, Ticket
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import ImageUploadInput from '../../components/ui/ImageUploadInput';
 
 const Dashboard = () => {
   const {
@@ -1989,16 +1990,15 @@ const Dashboard = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700">Photo URL</label>
-                <input
-                  type="url"
-                  required
-                  value={memberFormData.photoUrl}
-                  onChange={(e) => setMemberFormData({ ...memberFormData, photoUrl: e.target.value })}
-                  className="w-full p-2.5 bg-slate-50 border border-slate-300 text-xs"
-                />
-              </div>
+              <ImageUploadInput
+                label="Member Photo"
+                value={memberFormData.photoUrl}
+                onChange={(url) => setMemberFormData({ ...memberFormData, photoUrl: url })}
+                folder="sense_iiui/members"
+                aspectRatio="square"
+                required
+                helpText="Upload a portrait from your device or paste an image URL."
+              />
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
@@ -2354,16 +2354,15 @@ const Dashboard = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700">Banner Image URL</label>
-                <input
-                  type="url"
-                  required
-                  value={eventFormData.bannerImage}
-                  onChange={(e) => setEventFormData({ ...eventFormData, bannerImage: e.target.value })}
-                  className="w-full p-2.5 bg-slate-50 border border-slate-300 text-xs"
-                />
-              </div>
+              <ImageUploadInput
+                label="Event Banner Image"
+                value={eventFormData.bannerImage}
+                onChange={(url) => setEventFormData({ ...eventFormData, bannerImage: url })}
+                folder="sense_iiui/events"
+                aspectRatio="banner"
+                required
+                helpText="Upload a horizontal banner graphic from your device or paste a URL."
+              />
 
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700">Summary</label>
@@ -2460,16 +2459,15 @@ const Dashboard = () => {
                 </select>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-700">Image URL *</label>
-                <input
-                  type="url"
-                  required
-                  value={galleryFormData.imageUrl}
-                  onChange={(e) => setGalleryFormData({ ...galleryFormData, imageUrl: e.target.value })}
-                  className="w-full p-2.5 bg-slate-50 border border-slate-300 text-xs"
-                />
-              </div>
+              <ImageUploadInput
+                label="Gallery Photo"
+                value={galleryFormData.imageUrl}
+                onChange={(url) => setGalleryFormData({ ...galleryFormData, imageUrl: url })}
+                folder="sense_iiui/gallery"
+                aspectRatio="banner"
+                required
+                helpText="Upload a campus/event photo from your device or paste an image URL."
+              />
 
               <div className="space-y-1">
                 <label className="text-xs font-bold text-slate-700">Caption</label>
