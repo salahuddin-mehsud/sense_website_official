@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  GraduationCap, Building2, Calendar, Target, Eye, Shield,
-  Award, Code2, Users, Compass, CheckCircle2, ArrowRight, Layers
-} from 'lucide-react';
-import { useApp } from '../context/AppContext';
+import { Shield, Code2, Award, Users } from 'lucide-react';
 
 const About = () => {
-  const { siteContent } = useApp();
-  const about = siteContent.about;
 
   return (
     <div className="flex-1 font-sans bg-slate-50">
@@ -41,10 +35,7 @@ const About = () => {
               <h3 className="text-2xl font-bold text-slate-800">
                 Pioneering Software Engineering at IIUI
               </h3>
-              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
-                {about.overview}
-              </p>
-              <p className="text-slate-600 leading-relaxed text-sm">
+              <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
                 Founded in <strong>2025</strong> at International Islamic University Islamabad, SENSE IIUI was created to bridge the critical gap between academic software engineering principles and the rapid demands of global tech industries. SENSE enables students to transition from textbook theory to building live production-grade systems, participating in national hackathons, and contributing to open-source software.
               </p>
 
@@ -75,38 +66,6 @@ const About = () => {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-            <div className="p-6 bg-white border border-slate-200 shadow-sm space-y-2">
-              <div className="w-10 h-10 bg-blue-100 text-sense-blue flex items-center justify-center font-bold">
-                1
-              </div>
-              <h4 className="font-bold text-slate-900 text-base">Curriculum Enrichment</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Translating coursework in Software Architecture, Design Patterns, Algorithms, and Database Systems into real-world GitHub repositories.
-              </p>
-            </div>
-
-            <div className="p-6 bg-white border border-slate-200 shadow-sm space-y-2">
-              <div className="w-10 h-10 bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
-                2
-              </div>
-              <h4 className="font-bold text-slate-900 text-base">Industrial Bridge</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Hosting guest tech talks, recruitment drives, and mock technical interview sessions with leading Islamabad software houses.
-              </p>
-            </div>
-
-            <div className="p-6 bg-white border border-slate-200 shadow-sm space-y-2">
-              <div className="w-10 h-10 bg-cyan-100 text-sense-cyan flex items-center justify-center font-bold">
-                3
-              </div>
-              <h4 className="font-bold text-slate-900 text-base">Research & Hackathons</h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Supporting undergraduate student teams in publishing papers in recognized computing conferences and competing nationally.
-              </p>
             </div>
           </div>
         </section>

@@ -81,8 +81,6 @@ const EventAnnouncementBar = () => {
                   {currentEvent.title}
                 </Link>
 
-                <span className="hidden md:inline text-slate-950/60 font-black">•</span>
-
                 {/* Deadline Info */}
                 <span className="hidden sm:inline-flex items-center gap-1 font-semibold text-slate-900 shrink-0 text-xs">
                   <span className="text-slate-800 font-bold">Registration Closes:</span>
