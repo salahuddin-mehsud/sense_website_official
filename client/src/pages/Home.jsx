@@ -29,10 +29,18 @@ const Home = () => {
   const displayGallery = sessionGallery.slice(0, 4);
 
   // Core Cabinet leaders preview (President, Vice President, General Secretary)
-  const keyCabinet = sessionCabinet.filter(c =>
-    c.position.toLowerCase().includes('president') ||
+  const president = sessionCabinet.find(c =>
+    c.position.toLowerCase() === 'president' ||
+    c.position.toLowerCase().includes('founding president')
+  ) || sessionCabinet.find(c => c.name.toLowerCase().includes('ahmed'));
+
+  const vicePresident = sessionCabinet.find(c =>
+    c.position.toLowerCase().includes('vice')
+  ) || sessionCabinet.find(c => c.name.toLowerCase().includes('zain'));
+
+  const generalSecretary = sessionCabinet.find(c =>
     c.position.toLowerCase().includes('secretary')
-  ).slice(0, 3);
+  ) || sessionCabinet.find(c => c.name.toLowerCase().includes('hamza'));
 
   const handleNewsletter = (e) => {
     e.preventDefault();
@@ -71,41 +79,29 @@ const Home = () => {
                   </p>
                 </div>
 
-                {/* Society Highlights Grid (No numbers, no percentages, general tech & academic excellence) */}
+                {/* Society Highlights Grid */}
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
-                  <div className="p-3 rounded-none bg-slate-800/70 border border-slate-700 text-center flex flex-col justify-center">
+                  <div className="py-3.5 px-3 rounded-none bg-slate-800/80 border border-slate-700 text-center flex items-center justify-center">
                     <span className="block font-bold text-white text-xs sm:text-sm tracking-wide">
                       Official Society
                     </span>
-                    <span className="text-slate-400 text-[10px] sm:text-[11px] mt-0.5 leading-tight">
-                      Dept. of Software Engineering
-                    </span>
                   </div>
 
-                  <div className="p-3 rounded-none bg-slate-800/70 border border-slate-700 text-center flex flex-col justify-center">
+                  <div className="py-3.5 px-3 rounded-none bg-slate-800/80 border border-slate-700 text-center flex items-center justify-center">
                     <span className="block font-bold text-sense-accent text-xs sm:text-sm tracking-wide">
                       Student-Led
                     </span>
-                    <span className="text-slate-400 text-[10px] sm:text-[11px] mt-0.5 leading-tight">
-                      Innovation & Integrity
-                    </span>
                   </div>
 
-                  <div className="p-3 rounded-none bg-slate-800/70 border border-slate-700 text-center flex flex-col justify-center">
+                  <div className="py-3.5 px-3 rounded-none bg-slate-800/80 border border-slate-700 text-center flex items-center justify-center">
                     <span className="block font-bold text-sense-lightCyan text-xs sm:text-sm tracking-wide">
                       Skill Development
                     </span>
-                    <span className="text-slate-400 text-[10px] sm:text-[11px] mt-0.5 leading-tight">
-                      Hackathons, Events & R&D
-                    </span>
                   </div>
 
-                  <div className="p-3 rounded-none bg-slate-800/70 border border-slate-700 text-center flex flex-col justify-center">
+                  <div className="py-3.5 px-3 rounded-none bg-slate-800/80 border border-slate-700 text-center flex items-center justify-center">
                     <span className="block font-bold text-emerald-400 text-xs sm:text-sm tracking-wide">
                       Knowledge Sharing
-                    </span>
-                    <span className="text-slate-400 text-[10px] sm:text-[11px] mt-0.5 leading-tight">
-                      Academic & Career Growth
                     </span>
                   </div>
                 </div>
@@ -152,7 +148,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-1">
-              <span className="text-2xl sm:text-3xl font-extrabold text-white font-mono">500+</span>
+              <span className="text-2xl sm:text-3xl font-extrabold text-white font-mono">30+</span>
               <p className="text-xs text-slate-400 font-medium">Students & Community Members</p>
             </div>
             <div className="space-y-1">
@@ -385,35 +381,36 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {keyCabinet.map((member) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
+            {/* 1. Vice President (Left on desktop, 2nd on mobile) */}
+            {vicePresident && (
               <div
-                key={member.id}
-                className="bg-white rounded-none border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col text-center p-6 space-y-4 group"
+                key={vicePresident.id}
+                className="order-2 md:order-1 bg-white rounded-none border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col text-center p-6 space-y-4 group md:translate-y-2 md:scale-[0.98]"
               >
-                <div className="relative mx-auto w-32 h-32 rounded-full overflow-hidden border-2 border-slate-200 group-hover:border-sense-lightCyan transition shadow-sm">
+                <div className="relative mx-auto w-28 h-28 rounded-full overflow-hidden border-2 border-slate-200 group-hover:border-sense-lightCyan transition shadow-sm">
                   <img
-                    src={member.photoUrl}
-                    alt={member.name}
+                    src={vicePresident.photoUrl}
+                    alt={vicePresident.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300 rounded-full"
                   />
                 </div>
 
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-sense-blue transition">
-                    {member.name}
+                    {vicePresident.name}
                   </h3>
-                  <span className="inline-block px-3 py-0.5 rounded-none text-xs font-bold bg-sense-paleCyan text-sense-navy uppercase tracking-wider">
-                    {member.position}
+                  <span className="inline-block px-3 py-0.5 rounded-none text-xs font-bold bg-slate-100 text-slate-700 uppercase tracking-wider">
+                    {vicePresident.position}
                   </span>
                   <p className="text-xs text-slate-500 font-medium line-clamp-2 pt-2">
-                    {member.headline}
+                    {vicePresident.headline}
                   </p>
                 </div>
 
-                {member.skills && member.skills.length > 0 && (
+                {vicePresident.skills && vicePresident.skills.length > 0 && (
                   <div className="flex flex-wrap justify-center gap-1.5 pt-2">
-                    {member.skills.slice(0, 3).map((skill, idx) => (
+                    {vicePresident.skills.slice(0, 3).map((skill, idx) => (
                       <span key={idx} className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-none font-mono">
                         {skill}
                       </span>
@@ -422,9 +419,9 @@ const Home = () => {
                 )}
 
                 <div className="pt-4 border-t border-slate-100 mt-auto flex justify-center">
-                  {member.linkedIn && (
+                  {vicePresident.linkedIn && (
                     <a
-                      href={member.linkedIn}
+                      href={vicePresident.linkedIn}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-sense-blue hover:text-sense-navy"
@@ -435,7 +432,116 @@ const Home = () => {
                   )}
                 </div>
               </div>
-            ))}
+            )}
+
+            {/* 2. President (Center on desktop, 1st on mobile, HIGHLIGHTED & FORWARD) */}
+            {president && (
+              <div
+                key={president.id}
+                className="order-1 md:order-2 bg-white rounded-none border-2 border-sense-accent ring-4 ring-amber-400/20 overflow-hidden shadow-xl md:shadow-2xl transition flex flex-col text-center p-7 space-y-4 group md:-translate-y-4 md:scale-[1.05] z-20 relative"
+              >
+                {/* Prominent Header Banner */}
+                <div className="bg-gradient-to-r from-amber-500 via-sense-accent to-amber-500 text-slate-950 font-black text-[11px] uppercase tracking-widest py-1.5 px-4 -mt-7 -mx-7 mb-2 shadow-xs">
+                  Executive Leader
+                </div>
+
+                <div className="relative mx-auto w-36 h-36 rounded-full overflow-hidden border-4 border-sense-accent shadow-md group-hover:scale-105 transition duration-300">
+                  <img
+                    src={president.photoUrl}
+                    alt={president.name}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <h3 className="text-xl font-extrabold text-slate-950 group-hover:text-sense-blue transition">
+                    {president.name}
+                  </h3>
+                  <span className="inline-block px-4 py-1 rounded-none text-xs font-black bg-sense-accent text-slate-950 uppercase tracking-wider shadow-xs">
+                    {president.position}
+                  </span>
+                  <p className="text-xs text-slate-600 font-medium line-clamp-3 pt-2 leading-relaxed">
+                    {president.headline}
+                  </p>
+                </div>
+
+                {president.skills && president.skills.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-1.5 pt-2">
+                    {president.skills.slice(0, 3).map((skill, idx) => (
+                      <span key={idx} className="text-[10px] bg-amber-50 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-none font-mono font-semibold">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="pt-4 border-t border-slate-100 mt-auto flex justify-center">
+                  {president.linkedIn && (
+                    <a
+                      href={president.linkedIn}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-sense-blue hover:text-sense-navy"
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 1.62 1.62A1.62 1.62 0 0 0 7.84 6.2Z"/></svg>
+                      <span>LinkedIn Profile</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* 3. General Secretary (Right on desktop, 3rd on mobile) */}
+            {generalSecretary && (
+              <div
+                key={generalSecretary.id}
+                className="order-3 md:order-3 bg-white rounded-none border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col text-center p-6 space-y-4 group md:translate-y-2 md:scale-[0.98]"
+              >
+                <div className="relative mx-auto w-28 h-28 rounded-full overflow-hidden border-2 border-slate-200 group-hover:border-sense-lightCyan transition shadow-sm">
+                  <img
+                    src={generalSecretary.photoUrl}
+                    alt={generalSecretary.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300 rounded-full"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-sense-blue transition">
+                    {generalSecretary.name}
+                  </h3>
+                  <span className="inline-block px-3 py-0.5 rounded-none text-xs font-bold bg-slate-100 text-slate-700 uppercase tracking-wider">
+                    {generalSecretary.position}
+                  </span>
+                  <p className="text-xs text-slate-500 font-medium line-clamp-2 pt-2">
+                    {generalSecretary.headline}
+                  </p>
+                </div>
+
+                {generalSecretary.skills && generalSecretary.skills.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-1.5 pt-2">
+                    {generalSecretary.skills.slice(0, 3).map((skill, idx) => (
+                      <span key={idx} className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-none font-mono">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="pt-4 border-t border-slate-100 mt-auto flex justify-center">
+                  {generalSecretary.linkedIn && (
+                    <a
+                      href={generalSecretary.linkedIn}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-sense-blue hover:text-sense-navy"
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.77v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 1.62 1.62A1.62 1.62 0 0 0 7.84 6.2Z"/></svg>
+                      <span>LinkedIn Profile</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="text-center">
@@ -443,7 +549,7 @@ const Home = () => {
               to="/team"
               className="px-6 py-3 rounded-none bg-sense-blue hover:bg-sense-navy text-white font-bold text-sm transition shadow-sm inline-flex items-center gap-2"
             >
-              <span>Meet Full Team & Cabinet</span>
+              <span>Meet Our Team</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

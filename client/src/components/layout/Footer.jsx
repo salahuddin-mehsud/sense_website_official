@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Code, Lock } from 'lucide-react';
+import { Mail, Phone, MapPin, Code } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
 const Footer = () => {
@@ -88,9 +88,6 @@ const Footer = () => {
               <li>
                 <Link to="/team" className="hover:text-sense-lightCyan transition">Teams</Link>
               </li>
-              <li>
-                <Link to="/mission-vision" className="hover:text-sense-lightCyan transition">Vision</Link>
-              </li>
             </ul>
           </div>
 
@@ -118,11 +115,6 @@ const Footer = () => {
               <li>
                 <Link to="/events" className="hover:text-sense-lightCyan transition">
                   DevSprint Hackathon
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin/login" className="hover:text-sense-accent flex items-center gap-1 transition text-xs mt-2 text-slate-500">
-                  <Lock className="w-3 h-3" /> Admin Login
                 </Link>
               </li>
             </ul>

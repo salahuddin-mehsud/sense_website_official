@@ -13,7 +13,6 @@ import Team from './pages/Team';
 import Collaboration from './pages/Collaboration';
 import Membership from './pages/Membership';
 import Volunteer from './pages/Volunteer';
-import MissionVision from './pages/MissionVision';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -31,14 +30,14 @@ function ScrollToTop() {
 
 function App() {
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
+  const isAuthOrAdminRoute = location.pathname.startsWith('/admin') || location.pathname === '/login';
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
       <ScrollToTop />
       <SearchModal />
 
-      {!isAdminRoute && <Navbar />}
+      {!isAuthOrAdminRoute && <Navbar />}
 
       <main className="flex-1 flex flex-col">
         <Routes>
@@ -52,10 +51,11 @@ function App() {
           <Route path="/collaboration" element={<Collaboration />} />
           <Route path="/membership" element={<Membership />} />
           <Route path="/volunteer" element={<Volunteer />} />
-          <Route path="/mission-vision" element={<MissionVision />} />
+          <Route path="/mission-vision" element={<Navigate to="/about" replace />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
+          {/* Auth & Admin Routes */}
+          <Route path="/login" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<Navigate to="/login" replace />} />
           <Route path="/admin" element={<Dashboard />} />
 
           {/* Fallback 404 */}
@@ -80,10 +80,9 @@ function App() {
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer />}
+      {!isAuthOrAdminRoute && <Footer />}
     </div>
   );
 }
 
 export default App;
-

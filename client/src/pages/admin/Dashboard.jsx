@@ -67,7 +67,7 @@ const Dashboard = () => {
 
   // If not logged in, redirect to login page
   if (!currentUser) {
-    navigate('/admin/login');
+    navigate('/login');
     return null;
   }
 
